@@ -28,7 +28,7 @@ class PasswordResetController extends Controller
 
         if (!$user)
             return response()->json([
-                'message' => __('passwords.user')
+                'message' => 'E-mail address was not found.'
             ], 404);
 
         $passwordReset = PasswordReset::updateOrCreate(['email' => $user->email], [
@@ -40,7 +40,7 @@ class PasswordResetController extends Controller
             $user->notify(new PasswordResetRequest($passwordReset->token));
 
         return response()->json([
-            'message' => __('passwords.sent')
+            'message' => 'We have e-mailed your password reset link!'
         ]);
     }
 
