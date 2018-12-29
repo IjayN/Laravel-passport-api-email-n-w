@@ -106,6 +106,7 @@ class PasswordResetController extends Controller
             ], 404);
 
         $user->password = bcrypt($request->password);
+        $user->active = 1;
         $user->save();
 
         $passwordReset->delete();
